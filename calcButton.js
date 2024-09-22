@@ -10,15 +10,22 @@ template.innerHTML = `
             width: 6rem;
             height: 6rem;
             font-size: 3rem;
-            font-weight: bold; 
+            font-weight: bold;
             cursor: pointer;
             transition: scale 0.2s ease, background-color 0.2s ease;
             background-color: #1a1a1a;
             border: solid 1px #535353;
+            color: #fff; 
         }
         button:hover {
-            scale: 1.05; 
-            background-color: #3c1414; 
+            scale: 1.05;
+            background-color: #3c1414;
+        }
+        @media (prefers-color-scheme: light) {
+            button {
+                background-color: #ccc;
+                color: #1a1a1a; 
+            } 
         } 
     </style>
     <button>
