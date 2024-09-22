@@ -21,16 +21,17 @@ template.innerHTML = `
             background-color: #3c1414; 
         } 
     </style>
-    <button><slot></slot></button>
+    <button>
+        <slot></slot>
+    </button>
 `;
 class CalcButton extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'closed'});
-        this.shadow.append(template.content.cloneNode(true));
-        this.button = this.shadow.querySelector('button');
+        this.attachShadow({mode: 'open'});
+        this.shadowRoot.append(template.content.cloneNode(true));
+        this.button = this.shadowRoot.querySelector('button');
         this.button.addEventListener('click', this);
-        console.log();
     }
 
     connectedCallback() {
@@ -39,7 +40,7 @@ class CalcButton extends HTMLElement {
                 console.log(mutation);
                 if (mutation.addedNodes.length) {
                     for (const node of mutation.addedNodes) {
-                        this.shadow.appendChild(node);
+                        this.shadowRoot.appendChild(node);
                     }
                 }
             }
