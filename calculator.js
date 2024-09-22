@@ -51,10 +51,10 @@ template.innerHTML = `
 class Calculator extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({mode: 'closed'});
-        this.shadow.append(template.content.cloneNode(true));
+        this.attachShadow({mode: 'open'});
+        this.shadowRoot.append(template.content.cloneNode(true));
 
-        this.buttons = this.shadow.querySelectorAll('calc-button');
+        this.buttons = this.shadowRoot.querySelectorAll('calc-button');
         this.buttons.forEach(button => {
             button.addEventListener('operator', this);
             button.addEventListener('digit', this);
@@ -63,8 +63,8 @@ class Calculator extends HTMLElement {
         this._logLines = [];
         this._operatorStack = null;
 
-        this.log = this.shadow.querySelector('.log');
-        this.currentValue = this.shadow.querySelector('.current-value');
+        this.log = this.shadowRoot.querySelector('.log');
+        this.currentValue = this.shadowRoot.querySelector('.current-value');
         this.curValue = '';
     }
 
